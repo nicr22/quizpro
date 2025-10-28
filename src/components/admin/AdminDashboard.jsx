@@ -5,7 +5,7 @@ import { sampleQuizzes } from '../../data/sampleQuizzes';
 import { diagnosticSupabase } from '../../utils/diagnosticSupabase';
 import './AdminDashboard.css';
 
-function AdminDashboard({ onEditQuiz }) {
+function AdminDashboard({ onEditQuiz, onLogout }) {
   const [quizzes, setQuizzes] = useState({});
   const [showSampleModal, setShowSampleModal] = useState(false);
   const [isSupabaseConnected, setIsSupabaseConnected] = useState(false);
@@ -137,15 +137,22 @@ function AdminDashboard({ onEditQuiz }) {
             <h1>⚡ QuizPro</h1>
             <p className="subtitle">Generador de Quizzes para WordPress</p>
           </div>
-          <div className="connection-status">
-            {isSupabaseConnected ? (
-              <span className="status-badge status-online">
-                🟢 Supabase Conectado
-              </span>
-            ) : (
-              <span className="status-badge status-offline">
-                🟡 Solo LocalStorage
-              </span>
+          <div className="header-right">
+            <div className="connection-status">
+              {isSupabaseConnected ? (
+                <span className="status-badge status-online">
+                  🟢 Supabase Conectado
+                </span>
+              ) : (
+                <span className="status-badge status-offline">
+                  🟡 Solo LocalStorage
+                </span>
+              )}
+            </div>
+            {onLogout && (
+              <button className="logout-button" onClick={onLogout} title="Cerrar Sesión">
+                🚪 Salir
+              </button>
             )}
           </div>
         </div>
