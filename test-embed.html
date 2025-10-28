@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Quiz Embed</title>
+</head>
+<body>
+    <h1>Test de Quiz Embed</h1>
+
+    <!-- QuizPro Embed Code -->
+    <div id="quizpro-container"></div>
+    <script src="http://localhost:3001/dist/quizpro-loader.js?quiz=quiz_1761612393251_yg10byuwi"></script>
+
+    <script>
+        // Debug: Ver qué se crea en window
+        setTimeout(() => {
+            console.log('=== DEBUG ===');
+            console.log('window keys:', Object.keys(window).filter(k => k.includes('Quiz')));
+
+            // Buscar el namespace correcto
+            for (let key in window) {
+                if (key.startsWith('QuizPro_')) {
+                    console.log('Found:', key);
+                    console.log('Functions:', Object.keys(window[key]));
+                }
+            }
+        }, 2000);
+    </script>
+</body>
+</html>
